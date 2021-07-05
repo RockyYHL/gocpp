@@ -27,7 +27,7 @@ struct teacher
 struct teacher2
 {
     string name;
-    struct Student2 stu[];
+    struct Student2 stu[3];
 };
 
 void printStudent1(struct Student s)
@@ -54,6 +54,16 @@ void setTeacherAndStudent(struct teacher2 tArray[], int len)
             tArray[i].stu[j].name = "Student_";
             tArray[i].stu[j].name += stuSeed[j];
             tArray[i].stu[j].score = 90 + j * 2;
+        }
+    }
+}
+
+void printInfo(struct teacher2 tArray[], int len){
+    for(int i = 0; i < len; i++){
+        cout << "第"<< i+1 << "个老师姓名： " << tArray[i].name << endl;
+        for(int j = 0; j < 3; j++){
+            cout << "\t第" << j+1 << "个学生的姓名： " << tArray[i].stu[j].name \
+            << "  成绩：" << tArray[i].stu[j].score << endl;
         }
     }
 }
@@ -89,7 +99,7 @@ int main()
             作用：用const来防止函数体中的误操作
             将函数中的形参改为指针，可以减少内存空间，而且不会复制新的副本出来
         8.结构体案例
-
+git同步和拉取的区别
     */
 
     // s3.age = 10;
@@ -129,6 +139,10 @@ int main()
     // printStudent1(s);
     // struct Student s2 = {"你爹", 26, 100};
     // printStudent2(&s2);
+
+    struct teacher2 teachers[3];
+    setTeacherAndStudent(teachers, 3);
+    printInfo(teachers, 3);
 
     
 
