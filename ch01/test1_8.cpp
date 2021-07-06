@@ -68,6 +68,31 @@ void printInfo(struct teacher2 tArray[], int len){
     }
 }
 
+struct hero{
+    string name;
+    int age;
+    string sex;
+};
+
+void bubbleHeros(struct hero heros[], int len){
+    for(int i = 0; i < len - 1; i ++){
+        struct hero temp;
+        for(int j = 0; j < len - 1 - i; j++){
+            if(heros[j].age > heros[j+1].age){
+                temp = heros[j];
+                heros[j] = heros[j+1];
+                heros[j+1] = temp;
+            }
+        }
+    }
+}
+
+void printHeros(struct hero heros[], int len){
+    for(int i = 0; i < len; i++){
+        cout << heros[i].name << heros[i].age << heros[i].sex << endl;
+    }
+}
+
 int main()
 {
     /*
@@ -98,8 +123,9 @@ int main()
         7.结构体中const使用场景
             作用：用const来防止函数体中的误操作
             将函数中的形参改为指针，可以减少内存空间，而且不会复制新的副本出来
-        8.结构体案例
-git同步和拉取的区别
+        8.结构体案例1
+          结构体案例2
+
     */
 
     // s3.age = 10;
@@ -132,7 +158,7 @@ git同步和拉取的区别
 
     // printStudent1(s);
     // cout << s.age << endl;
-    // printStudent2(&s);
+    // prinif(heros[i].age > heros[i+1].age)tStudent2(&s);
     // cout << s.age << endl;
 
     // struct Student s = {"你爹", 26, 100};
@@ -140,9 +166,21 @@ git同步和拉取的区别
     // struct Student s2 = {"你爹", 26, 100};
     // printStudent2(&s2);
 
-    struct teacher2 teachers[3];
-    setTeacherAndStudent(teachers, 3);
-    printInfo(teachers, 3);
+    // struct teacher2 teachers[3];
+    // setTeacherAndStudent(teachers, 3);
+    // printInfo(teachers, 3);
+
+    struct hero heros[5] = {
+        {"刘备", 23, "男"},
+        {"关羽", 22, "男"},
+        {"张飞", 20, "男"},
+        {"赵云", 21, "男"},
+        {"貂蝉", 19, "女"}
+    };
+    
+    bubbleHeros(heros, 5);
+    printHeros(heros, 5);
+
 
     
 
