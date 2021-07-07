@@ -83,17 +83,21 @@ void addPerson(Addressbooks *abs)
     }
 }
 
-void showPerson(Addressbooks * abs){
-    if(abs->m_size == 0){
+void showPerson(Addressbooks *abs)
+{
+    if (abs->m_size == 0)
+    {
         cout << "当前记录为空" << endl;
     }
-    else{
-        for(int i = 0; i < abs->m_size; i++){
+    else
+    {
+        for (int i = 0; i < abs->m_size; i++)
+        {
             cout << "姓名： " << abs->personArray[i].name << "\t";
-            cout << "性别： " << (abs->personArray[i].sex == 1 ? "男":"女") << "\t";
-            cout << "年龄： " << abs->personArray[i].age <<"\t";
-            cout << "电话： " << abs->personArray[i].phone <<"\t";
-            cout << "地址： " << abs->personArray[i].address <<endl;
+            cout << "性别： " << (abs->personArray[i].sex == 1 ? "男" : "女") << "\t";
+            cout << "年龄： " << abs->personArray[i].age << "\t";
+            cout << "电话： " << abs->personArray[i].phone << "\t";
+            cout << "地址： " << abs->personArray[i].address << endl;
         }
     }
 }
@@ -109,6 +113,39 @@ void showMenu()
     cout << "******* 6、清空联系人 *******" << endl;
     cout << "******* 0、退出通讯录 *******" << endl;
     cout << "***************************" << endl;
+}
+
+int isExist(Addressbooks *abs, string name)
+{
+    for (int i = 0; i < abs->m_size; i++)
+    {
+        if (abs->personArray[i].name == name)
+        {
+            return i;
+        }
+        // else
+        // {
+        //     return -1;
+        // }
+    }
+    return -1;
+}
+
+void deletePerson(Addressbooks * abs){
+    cout << "请输入您要删除的联系人：" << endl;
+    string name;
+    cin >> name;
+    int ret = isExist(abs, name);
+    if (ret != -1){
+        for(int i = 0; i<abs->m_size-1; i++){
+            abs->personArray[i] = abs->personArray[i+1];
+        }
+        abs->m_size--;
+        cout << "删除成功！" << endl;
+    }
+    else{
+        cout << "没有这个人啊" << endl;
+    }
 }
 
 int main()
@@ -131,7 +168,19 @@ int main()
             showPerson(&abs);
             break;
         case 3:
+        {
+            cout << "请输入删除联系人的姓名： " << endl;
+            string n;
+            cin >> n;
+            // if (isExist(&abs, n) == -1){
+            //     cout << "查无此人" << endl;
+            // }
+            // else{
+            //     cout << "找到此人" << endl;
+            // }
+            deletePerson(&abs);
             break;
+        }
         case 4:
             break;
         case 5:
