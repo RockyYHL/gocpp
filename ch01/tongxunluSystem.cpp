@@ -174,6 +174,7 @@ int main()
             // cin >> n;
             // if (isExist(&abs, n) == -1){
             //     cout << "查无此人" << endl;
+            
             // }
             // else{
             //     cout << "找到此人" << endl;
