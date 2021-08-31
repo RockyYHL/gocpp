@@ -46,7 +46,7 @@ public:
     Person(int age, int height)
     {
         m_age = age;
-        m_height = new int(height);
+        // m_height = new int(height);
     }
 
      Person(int age, int B, int C)
@@ -64,21 +64,21 @@ public:
         // m_age = p.m_age;
         cout << "gouzao(copy) hanshu diaoyong" << endl;
         m_age = p.m_age;
-        m_height = new int(*p.m_height);
+        // m_height = new int(*p.m_height);
     }
 
     ~Person()
     {
-        if (m_height != NULL)
-        {
-            delete m_height;
-            m_height = NULL;
-        }
+        // if (m_height != NULL)
+        // {
+        //     delete m_height;
+        //     m_height = NULL;
+        // }
         cout << "xigou hanshu diaoyong" << endl;
     }
 
     int m_age;
-    int *m_height;
+    // int *m_height;
     int m_B;
     int m_C;
 };
@@ -126,11 +126,11 @@ void test05()
 {
     Person p1(18, 160);
     cout << "p1 s age is : " << p1.m_age << endl;
-    cout << "p1 s height is : " << *p1.m_height << endl;
+    // cout << "p1 s height is : " << *p1.m_height << endl;
 
     Person p2(p1);
     cout << "p2 s age is : " << p2.m_age << endl;
-    cout << "p1 s height is : " << *p2.m_height << endl;
+    // cout << "p1 s height is : " << *p2.m_height << endl;
 }
 
 void test06()
@@ -149,13 +149,19 @@ void test07()
     cout << "p.m_C: " << p.m_C << endl;
 }
 
+void test08(){
+    Person p1(20);
+    Person p2(p1);
+}
+
 int main()
 {
     // test01();
     // test02();
-    // test03();
+    test03();
     // test04();
     // test05();
-    test07();
+    // test07();
+    // test08();
     return 0;
 }

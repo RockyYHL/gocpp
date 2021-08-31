@@ -317,22 +317,25 @@ void test07()
     p.showPerson7();
 }
 
-template<class T1, class T2>    // 类外实现全局模板函数需要提前声明这个类
+template <class T1, class T2> // 类外实现全局模板函数需要提前声明这个类
 class Person8;
 
 template <class T1, class T2>
-void printPerson2(Person8<T1, T2> p){
-        cout << "name: " << p.m_name << "\n" << "age: " << p.m_age << endl;
+void printPerson2(Person8<T1, T2> p)
+{
+    cout << "name: " << p.m_name << "\n"
+         << "age: " << p.m_age << endl;
 }
 
 template <class T1, class T2>
 class Person8
 {
 
-    friend void printPerson2<>(Person8<T1, T2> p);   // 加空模板参数列表
+    friend void printPerson2<>(Person8<T1, T2> p); // 加空模板参数列表
     friend void printPerson(Person8<T1, T2> p)
     {
-        cout << "name: " << p.m_name << "\n" << "age: " << p.m_age << endl;
+        cout << "name: " << p.m_name << "\n"
+             << "age: " << p.m_age << endl;
     }
 
 public:
@@ -353,11 +356,96 @@ void test08()
     printPerson2(p);
 }
 
-void test09(){
+void printArr(MyArray<int> &arr)
+{
+    for (int i = 0; i < arr.getSize(); i++)
+    {
+        cout << arr[i] << endl;
+    }
+}
+
+void test09()
+{
     MyArray<int> arr(5);
+    // MyArray<int> arr2(arr);
+    // MyArray<int> arr3(100);
+    // arr3 = arr;
+
+    for (int i = 0; i < 5; i++)
+    {
+        arr.push_back(i);
+    }
+    cout << "arr：" << endl;
+    printArr(arr);
+
+    cout << "arr capacity is : " << arr.getCapacity() << endl;
+    cout << "arr size is : " << arr.getSize() << endl;
+
     MyArray<int> arr2(arr);
-    MyArray<int> arr3(100);
-    arr3 = arr;
+    cout << "arr2：" << endl;
+    printArr(arr2);
+
+    // 尾删
+    arr2.pop_back();
+    cout << "arr2 after pop ：" << endl;
+    printArr(arr2);
+    cout << "arr2 capacity is : " << arr2.getCapacity() << endl;
+    cout << "arr2 size is : " << arr2.getSize() << endl;
+}
+
+// 测试自定义数据类型数组
+
+class Person10
+{
+public:
+    Person10() {}
+    Person10(string name, int age)
+    {
+        this->m_name = name;
+        this->m_age = age;
+    }
+
+    string m_name;
+    int m_age;
+};
+
+void printPersonArr(MyArray<Person10> &arr)
+{
+    for (int i = 0; i < arr.getSize(); i++)
+    {
+        cout << arr[i].m_name << arr[i].m_age << endl;
+    }
+}
+
+void test10()
+{
+    MyArray<Person10> arr(10);
+
+    Person10 p1("sunwukong", 99);
+    Person10 p2("hanxin", 20);
+    Person10 p3("zhaoyun", 30);
+    Person10 p4("anqila", 26);
+    Person10 p5("bailishouyue", 27);
+    Person10 p6("chengyaojin", 29);
+
+    arr.push_back(p1);
+    arr.push_back(p2);
+    arr.push_back(p3);
+    arr.push_back(p4);
+    arr.push_back(p5);
+    arr.push_back(p6);
+
+    printPersonArr(arr);
+
+    cout << "arr capacity is : " << arr.getCapacity() << endl;
+    cout << "arr size is : " << arr.getSize() << endl;
+
+    // 尾删
+    arr.pop_back();
+    cout << "arr after pop ：" << endl;
+    printPersonArr(arr);
+    cout << "arr capacity is : " << arr.getCapacity() << endl;
+    cout << "arr size is : " << arr.getSize() << endl;
 }
 
 int main()
@@ -369,6 +457,7 @@ int main()
     // test06();
     // test07();
     // test08();
-    test09();
+    // test09();
+    test10();
     return 0;
 }

@@ -67,6 +67,39 @@ public:
         return *this;
     }
 
+    // 尾插法
+    void push_back(const T & val){
+        if(this->m_size == this->m_capacity){
+            return;
+        }
+        this->pAddress[this->m_size] = val;
+        this->m_size++;
+    }
+
+    // 尾删法
+    void pop_back(){
+        // 用户访问不到最后一个元素，即为尾删
+        if(this->m_size == 0){
+            return;
+        }
+        this->m_size--;
+    }
+
+    // 通过下标方式获取数组元素
+    T& operator[](int index){
+        return this->pAddress[index];
+    }
+
+    // 返回数组的容量
+    int getCapacity(){
+        return this->m_capacity;
+    }
+
+    // 返回数组的大小
+    int getSize(){
+        return this->m_size;
+    }
+
     ~MyArray()
     {
         if (this->pAddress != NULL)
