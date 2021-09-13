@@ -56,7 +56,34 @@ void setGroup(vector<Worker> &v, multimap<int, Worker> &m)
 void showWorkerGroup(multimap<int, Worker> &m)
 {
     cout << "CEHUA department info: " << endl;
-    
+    multimap<int, Worker>::iterator pos = m.find(CEHUA);
+    int count = m.count(CEHUA);
+    cout << "cehua count: " << count << endl;
+    int index = 0;
+    for (; pos != m.end() && index < count; pos++, index++)
+    {
+        cout << "name: " << pos->second.name << "\tsalary: " << pos->second.salary << endl;
+    }
+
+    cout << "MEISHU department info: " << endl;
+    multimap<int, Worker>::iterator pos2 = m.find(MEISHU);
+    int count2 = m.count(MEISHU);
+    cout << "meishu count: " << count2 << endl;
+    int index2 = 0;
+    for (; pos2 != m.end() && index < count2; pos2++, index2++)
+    {
+        cout << "name: " << pos2->second.name << "\tsalary: " << pos2->second.salary << endl;
+    }
+
+    cout << "YANFA department info: " << endl;
+    multimap<int, Worker>::iterator pos3 = m.find(YANFA);
+    int count3 = m.count(YANFA);
+    cout << "yanfa count: " << count3 << endl;
+    int index3 = 0;
+    for (; pos3 != m.end() && index3 < count3; pos3++, index3++)
+    {
+        cout << "name: " << pos3->second.name << "\tsalary: " << pos3->second.salary << endl;
+    }
 }
 
 int main()
